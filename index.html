@@ -25,6 +25,33 @@
         <p>Login to Feed Forward Meals</p>
       </div>
       <form id="auth-form">
+        <div id="signup-fields" style="display: none;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label for="first_name">First Name</label>
+              <input type="text" id="first_name" name="first_name" placeholder="John">
+            </div>
+            <div class="form-group">
+              <label for="last_name">Last Name</label>
+              <input type="text" id="last_name" name="last_name" placeholder="Doe">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mobile_number">Mobile Number</label>
+            <input type="tel" id="mobile_number" name="mobile_number" class="mono" placeholder="+1...">
+          </div>
+          <div class="form-group">
+            <label for="country">Country</label>
+            <select id="country" name="country">
+              <option value="">Select a country...</option>
+              <option value="US">United States</option>
+              <option value="CA">Canada</option>
+              <option value="UK">United Kingdom</option>
+              <option value="AU">Australia</option>
+              <option value="IN">India</option>
+            </select>
+          </div>
+        </div>
         <div class="form-group">
           <label for="email">Email</label>
           <input type="email" id="email" name="email" required placeholder="you@example.com">
