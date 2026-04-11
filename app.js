@@ -210,6 +210,13 @@ function toggleAuthMode() {
   document.getElementById('auth-toggle-text').innerText = isSignupMode ? 'Already have an account?' : 'Need an account?';
   const a = document.getElementById('toggle-auth');
   a.innerText = isSignupMode ? 'Log In' : 'Sign Up';
+
+  const signupFields = document.getElementById('signup-fields');
+  if(signupFields) {
+    signupFields.style.display = isSignupMode ? 'block' : 'none';
+    const extraInputs = signupFields.querySelectorAll('input, select');
+    extraInputs.forEach(input => input.required = isSignupMode);
+  }
 }
 
 let isAuthCooldown = false;
@@ -227,10 +234,20 @@ async function handleAuthSubmit(e) {
 
   const email = e.target.email.value;
   const password = e.target.password.value;
+  
+  let userData = {};
+  if (isSignupMode) {
+    userData = {
+      first_name: e.target.first_name.value,
+      last_name: e.target.last_name.value,
+      mobile_number: e.target.mobile_number.value,
+      country: e.target.country.value
+    };
+  }
 
   try {
     const { data, error } = isSignupMode 
-      ? await signup(email, password)
+      ? await signup(email, password, userData)
       : await login(email, password);
     
     if (error) throw error;
